@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+:root {
+    --surface: #f8f9ff;
+    --primary: #653e00;
+    --primary-container: #855300;
+    --secondary-container: #feae2c;
+    --on-surface: #121c2a;
+    --on-surface-variant: #514538;
+}
