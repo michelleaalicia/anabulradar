@@ -22,8 +22,8 @@
         <nav class="bg-white shadow-md">
             <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
 
-                <a href="{{ route('dashboard') }}" class="text-2xl font-bold text-amber-700">
-                    AnabulRadar
+                <a href="{{ route('dashboard') }}" class="flex items-center">
+                    <img src="{{ asset('images/logo.png') }}" alt="{{ config('app.name', 'AnabulRadar') }}" class="w-24 h-auto" style="height:auto;" />
                 </a>
 
                 <div class="flex items-center gap-6">
@@ -55,7 +55,11 @@
     @endauth
 
     <main class="py-8">
-        @yield('content')
+        @hasSection('content')
+            @yield('content')
+        @else
+            {{ $slot }}
+        @endif
     </main>
 
 </body>

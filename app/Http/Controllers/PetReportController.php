@@ -65,13 +65,22 @@ class PetReportController extends Controller
         return view('pet_reports.show', compact('petReport'));
     }
 
+    private function authorizeOwner(PetReport $petReport)
+    {
+        abort_if($petReport->user_id !== Auth::id(), 403);
+    }
+
     public function edit(PetReport $petReport)
     {
+        $this->authorizeOwner($petReport);
+
         return view('pet_reports.edit', compact('petReport'));
     }
 
     public function update(Request $request, PetReport $petReport)
     {
+        $this->authorizeOwner($petReport);
+
         $validated = $request->validate([
             'pet_name' => 'required|string|max:255',
             'species' => 'required|in:Cat,Dog',
@@ -99,6 +108,8 @@ class PetReportController extends Controller
 
     public function destroy(PetReport $petReport)
     {
+        $this->authorizeOwner($petReport);
+
         $petReport->delete();
 
         return redirect()->route('pet-reports.index')

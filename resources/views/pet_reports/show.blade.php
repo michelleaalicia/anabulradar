@@ -90,26 +90,28 @@
 
         </form>
 
-        <div class="mt-8 flex gap-4">
+        @if ($petReport->user_id === auth()->id())
+            <div class="mt-8 flex gap-4">
 
-            <a href="{{ route('pet-reports.edit', $petReport) }}"
-                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition">
-                Edit
-            </a>
+                <a href="{{ route('pet-reports.edit', $petReport) }}"
+                    class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition">
+                    Edit
+                </a>
 
-            <form action="{{ route('pet-reports.destroy', $petReport) }}" method="POST">
+                <form action="{{ route('pet-reports.destroy', $petReport) }}" method="POST">
 
-                @csrf
-                @method('DELETE')
+                    @csrf
+                    @method('DELETE')
 
-                <button type="submit" onclick="return confirm('Delete this report?')"
-                    class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition">
-                    Delete
-                </button>
+                    <button type="submit" onclick="return confirm('Delete this report?')"
+                        class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition">
+                        Delete
+                    </button>
 
-            </form>
+                </form>
 
-        </div>
+            </div>
+        @endif
 
     </div>
 @endsection
