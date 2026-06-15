@@ -43,7 +43,7 @@
 
                 <input type="text" name="contact_number" placeholder="Contact Number" class="rounded-lg">
 
-                <button class="bg-amber-700 text-white py-3 rounded-xl">
+                <button class="bg-orange-500 hover:bg-orange-600 text-white py-3 rounded-xl">
                     Submit
                 </button>
 
