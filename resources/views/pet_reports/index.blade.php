@@ -12,7 +12,7 @@
                 Pet Reports
             </h1>
 
-            <a href="{{ route('pet-reports.create') }}" class="bg-amber-700 text-white px-5 py-3 rounded-xl">
+            <a href="{{ route('pet-reports.create') }}" class="bg-orange-500 hover:bg-orange-600 text-white px-5 py-3 rounded-xl">
 
                 + Create Report
 

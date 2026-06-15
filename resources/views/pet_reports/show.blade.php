@@ -82,7 +82,7 @@
             <textarea name="comment" rows="4" class="w-full rounded-lg border-gray-300"
                 placeholder="Write your comment..."></textarea>
 
-            <button type="submit" class="mt-4 bg-amber-700 text-white px-6 py-3 rounded-xl">
+            <button type="submit" class="mt-4 bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-xl">
 
                 Add Comment
 
@@ -91,7 +91,7 @@
         </form>
 
         @if ($petReport->user_id === auth()->id())
-            <div class="mt-8 flex gap-4">
+            <div class="mt-8 flex justify-center gap-4">
 
                 <a href="{{ route('pet-reports.edit', $petReport) }}"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition">

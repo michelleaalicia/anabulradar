@@ -23,7 +23,7 @@
             <div class="bg-white rounded-2xl shadow p-6">
                 <p class="text-gray-500">Active Reports</p>
 
-                <h2 class="text-4xl font-bold mt-2 text-orange-600">
+                <h2 class="text-4xl font-bold mt-2 text-orange-500">
                     {{ $activeReports }}
                 </h2>
             </div>
