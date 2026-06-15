@@ -26,17 +26,33 @@
                 <div>
                     <label class="block mb-1 font-medium">Species</label>
 
-                    <select name="species" class="w-full rounded-lg border-gray-300">
+                    <select id="species" name="species" class="w-full rounded-lg border-gray-300">
 
                         <option value="Cat" {{ $petReport->species == 'Cat' ? 'selected' : '' }}>
+
                             Cat
+
                         </option>
 
                         <option value="Dog" {{ $petReport->species == 'Dog' ? 'selected' : '' }}>
+
                             Dog
+
+                        </option>
+
+                        <option value="Other" {{ !in_array($petReport->species, ['Cat', 'Dog']) ? 'selected' : '' }}>
+
+                            Other
+
                         </option>
 
                     </select>
+
+                    <input type="text" id="other_species" name="other_species"
+                        value="{{ !in_array($petReport->species, ['Cat', 'Dog']) ? $petReport->species : '' }}"
+                        placeholder="Enter species"
+                        class="w-full rounded-lg border-gray-300 mt-3 {{ in_array($petReport->species, ['Cat', 'Dog']) ? 'hidden' : '' }}">
+
                 </div>
 
                 <div>
@@ -137,6 +153,27 @@
 
         </form>
 
+        <script>
+
+            const speciesSelect = document.getElementById('species');
+            const otherSpecies = document.getElementById('other_species');
+
+            speciesSelect.addEventListener('change', function () {
+
+                if (this.value === 'Other') {
+
+                    otherSpecies.classList.remove('hidden');
+
+                } else {
+
+                    otherSpecies.classList.add('hidden');
+                    otherSpecies.value = '';
+
+                }
+
+            });
+
+        </script>
     </div>
 
 @endsection

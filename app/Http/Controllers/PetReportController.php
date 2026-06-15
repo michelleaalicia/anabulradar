@@ -24,7 +24,8 @@ class PetReportController extends Controller
     {
         $validated = $request->validate([
             'pet_name' => 'required|string|max:255',
-            'species' => 'required|in:Cat,Dog',
+            'species' => 'required|string',
+            'other_species' => 'nullable|string|max:255',
             'breed' => 'nullable|string|max:255',
             'gender' => 'nullable|string|max:255',
             'age' => 'nullable|integer',
@@ -42,7 +43,9 @@ class PetReportController extends Controller
         PetReport::create([
             'user_id' => Auth::id(),
             'pet_name' => $validated['pet_name'],
-            'species' => $validated['species'],
+            'species' => $request->species === 'Other'
+                ? $request->other_species
+                : $request->species,
             'breed' => $validated['breed'],
             'gender' => $validated['gender'],
             'age' => $validated['age'],
@@ -83,7 +86,8 @@ class PetReportController extends Controller
 
         $validated = $request->validate([
             'pet_name' => 'required|string|max:255',
-            'species' => 'required|in:Cat,Dog',
+            'species' => 'required|string',
+            'other_species' => 'nullable|string|max:255',
             'breed' => 'nullable|string|max:255',
             'gender' => 'nullable|string|max:255',
             'age' => 'nullable|integer',
@@ -99,6 +103,12 @@ class PetReportController extends Controller
         if ($request->hasFile('photo')) {
             $validated['photo'] = $request->file('photo')->store('pet_reports', 'public');
         }
+
+        $validated['species'] = $request->species === 'Other'
+            ? $request->other_species
+            : $request->species;
+
+        unset($validated['other_species']);
 
         $petReport->update($validated);
 

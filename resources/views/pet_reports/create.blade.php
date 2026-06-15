@@ -18,10 +18,18 @@
 
                 <input type="text" name="pet_name" placeholder="Pet Name" class="rounded-lg">
 
-                <select name="species" class="rounded-lg">
+                <select id="species" name="species" class="rounded-lg">
+
                     <option value="Cat">Cat</option>
+
                     <option value="Dog">Dog</option>
+
+                    <option value="Other">Other</option>
+
                 </select>
+
+                <input type="text" id="other_species" name="other_species" placeholder="Enter species"
+                    class="rounded-lg hidden">
 
                 <input type="text" name="breed" placeholder="Breed" class="rounded-lg">
 
@@ -50,6 +58,28 @@
             </div>
 
         </form>
+
+        <script>
+
+            const speciesSelect = document.getElementById('species');
+            const otherSpecies = document.getElementById('other_species');
+
+            speciesSelect.addEventListener('change', function () {
+
+                if (this.value === 'Other') {
+
+                    otherSpecies.classList.remove('hidden');
+
+                } else {
+
+                    otherSpecies.classList.add('hidden');
+                    otherSpecies.value = '';
+
+                }
+
+            });
+
+        </script>
 
     </div>
 
