@@ -17,6 +17,11 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('pet-reports', PetReportController::class);
 
+    Route::patch(
+        '/pet-reports/{petReport}/mark-as-found',
+        [PetReportController::class, 'markAsFound']
+    )->name('pet-reports.markAsFound');
+
     Route::get('/profile', [ProfileController::class, 'edit'])
         ->name('profile.edit');
 

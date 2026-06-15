@@ -46,14 +46,40 @@
 
             @forelse ($recentReports as $report)
 
-                <div class="border-b py-3">
+                <div class="border-b py-4 flex items-center justify-between">
 
-                    <div class="font-semibold">
-                        {{ $report->pet_name }}
+                    <div>
+
+                        <div class="font-semibold text-lg">
+                            {{ $report->pet_name }}
+                        </div>
+
+                        <div class="text-sm text-gray-500">
+                            {{ $report->lost_location }}
+                        </div>
+
+                        <div class="text-sm text-gray-400">
+                            {{ \Carbon\Carbon::parse($report->lost_date)->format('d M Y') }}
+                        </div>
+
                     </div>
 
-                    <div class="text-sm text-gray-500">
-                        {{ $report->lost_location }}
+                    <div>
+
+                        @if ($report->status == 'active')
+
+                            <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm font-medium">
+                                Active
+                            </span>
+
+                        @else
+
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-medium">
+                                Found
+                            </span>
+
+                        @endif
+
                     </div>
 
                 </div>

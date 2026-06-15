@@ -115,4 +115,17 @@ class PetReportController extends Controller
         return redirect()->route('pet-reports.index')
             ->with('success', 'Report deleted successfully.');
     }
+
+    public function markAsFound(PetReport $petReport)
+    {
+        $this->authorizeOwner($petReport);
+
+        $petReport->update([
+            'status' => 'found',
+        ]);
+
+        return redirect()
+            ->route('pet-reports.show', $petReport)
+            ->with('success', 'Pet has been marked as found.');
+    }
 }

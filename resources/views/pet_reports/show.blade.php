@@ -91,11 +91,38 @@
         </form>
 
         @if ($petReport->user_id === auth()->id())
+
             <div class="mt-8 flex justify-center gap-4">
+
+                @if ($petReport->status === 'active')
+
+                    <form action="{{ route('pet-reports.markAsFound', $petReport) }}" method="POST">
+
+                        @csrf
+                        @method('PATCH')
+
+                        <button type="submit" onclick="return confirm('Mark this pet as found?')"
+                            class="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg transition">
+
+                            Mark as Found
+
+                        </button>
+
+                    </form>
+
+                @else
+
+                    <span class="bg-green-100 text-green-700 px-6 py-2 rounded-lg font-semibold">
+                        ✅ Found
+                    </span>
+
+                @endif
 
                 <a href="{{ route('pet-reports.edit', $petReport) }}"
                     class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition">
+
                     Edit
+
                 </a>
 
                 <form action="{{ route('pet-reports.destroy', $petReport) }}" method="POST">
@@ -105,12 +132,15 @@
 
                     <button type="submit" onclick="return confirm('Delete this report?')"
                         class="bg-red-600 hover:bg-red-700 text-white px-6 py-2 rounded-lg transition">
+
                         Delete
+
                     </button>
 
                 </form>
 
             </div>
+
         @endif
 
     </div>
